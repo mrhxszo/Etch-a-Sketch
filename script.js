@@ -3,6 +3,7 @@ const clear = document.querySelector(".clear");
 const eraser = document.querySelector(".eraser");
 const pen = document.querySelector(".pen");
 const slider = document.querySelector(".slider");
+const color = document.querySelector(".color");
 height = "500px";
 width = "500px";
 container.style.height = height;
@@ -13,23 +14,23 @@ let newBoxes;
 defaultResolution();
 slider.addEventListener("input", resolution);
 
-clear.onclick = function () {
-    console.log(newBoxes);
-    newBoxes.forEach((element) => element.classList.remove("after"));
+color.addEventListener("input",() => console.log(color.value));
 
+clear.onclick = function () {
+    newBoxes.forEach((element) => element.style.backgroundColor = "#f7f3d6");
 }
 
 eraser.onclick = function () {
-    newBoxes.forEach((newBox) => newBox.addEventListener("mouseover", () => newBox.classList.remove("after")));
+    newBoxes.forEach((newBox) => newBox.addEventListener("mouseover", () => newBox.style.backgroundColor = "#f7f3d6"));
 }
 
 pen.onclick = function () {
-    newBoxes.forEach((newBox) => newBox.addEventListener("mouseover", () => newBox.classList.add("after")));
+    newBoxes.forEach((newBox) => newBox.addEventListener("mouseover", () => newBox.style.backgroundColor = color.value));
 }
 
 function EventListenerAdder(){
     newBoxes = document.querySelectorAll(".box");
-    newBoxes.forEach((newBox) => newBox.addEventListener("mouseover", () => newBox.classList.add("after")));
+    newBoxes.forEach((newBox) => newBox.addEventListener("mouseover", () => newBox.style.backgroundColor = color.value));
 }
 
 function defaultResolution(){
