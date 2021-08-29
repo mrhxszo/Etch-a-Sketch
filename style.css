@@ -28,8 +28,17 @@ body{
 .colorpicker{
     display: flex;
     justify-content: center;
-}
 
+}
+.color{
+    -webkit-appearance: none;
+    border: none;
+    background-color: rgb(118, 122, 122);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+
+}
 .container{
     display: grid;
     border: solid 2px;

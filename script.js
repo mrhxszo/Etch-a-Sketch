@@ -4,6 +4,8 @@ const eraser = document.querySelector(".eraser");
 const pen = document.querySelector(".pen");
 const slider = document.querySelector(".slider");
 const color = document.querySelector(".color");
+const rainbow = document.querySelector(".rainbow");
+const pixels = document.querySelector(".pixels")
 height = "500px";
 width = "500px";
 container.style.height = height;
@@ -13,8 +15,6 @@ let newBoxes;
 
 defaultResolution();
 slider.addEventListener("input", resolution);
-
-color.addEventListener("input",() => console.log(color.value));
 
 clear.onclick = function () {
     newBoxes.forEach((element) => element.style.backgroundColor = "#f7f3d6");
@@ -26,6 +26,14 @@ eraser.onclick = function () {
 
 pen.onclick = function () {
     newBoxes.forEach((newBox) => newBox.addEventListener("mouseover", () => newBox.style.backgroundColor = color.value));
+}
+
+rainbow.onclick = function () {
+    newBoxes.forEach((newBox) => newBox.addEventListener("mouseover", () => {
+        let red = Math.random()*100;
+        let green = Math.random()*100;
+        let blue = Math.random()*100;
+        newBox.style.backgroundColor = `rgb(${red}%,${green}%,${blue}%)`}));
 }
 
 function EventListenerAdder(){
@@ -41,6 +49,7 @@ function defaultResolution(){
         container.appendChild(newBox);
     }
     EventListenerAdder();
+    pixels.textContent = `${slider.value} x ${slider.value} px`;
 }
 
 function resolution(e){
@@ -52,6 +61,7 @@ function resolution(e){
         container.appendChild(newBox);
     }
     EventListenerAdder();
+    pixels.textContent = `${slider.value} x ${slider.value} px`;
 }
 
 function clearpad() {
