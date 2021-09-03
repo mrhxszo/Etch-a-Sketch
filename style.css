@@ -42,6 +42,7 @@ body{
 .container{
     display: grid;
     border: solid 2px;
+    background-color: #f7f3d6;
 }
 .box{
     background-color:#f7f3d6;
@@ -58,4 +59,7 @@ body{
 }
 .button:hover{
     transform: scale(1.1);
+}
+.buttonpressed {
+    background-color: #3f3b39;
 }
