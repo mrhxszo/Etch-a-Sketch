@@ -21,8 +21,9 @@ slider.addEventListener("input", resolution);
 clear.onclick = function (e) {
     newBoxes.forEach((element) => element.style.backgroundColor = "#f7f3d6");
     for(let i=0; i<box.length; i++){
-        box[i] = 0;
+        box[i] = 0.1;
     }
+    console.log(box);
 }
 
 eraser.onclick = function () {
@@ -37,8 +38,7 @@ pen.onclick = function () {
     buttonColor(currentMode);
 }
 
-rainbow.onclick = function (e) {
-    console.log(e);
+rainbow.onclick = function () {
     newBoxes.forEach((newBox) => newBox.addEventListener("mouseover", function rainbowfunc(){
         let red = Math.random()*100;
         let green = Math.random()*100;
@@ -50,35 +50,30 @@ rainbow.onclick = function (e) {
 }
 
 greyscale.onclick = function () {
-    newBoxes.forEach((i) => i.removeEventListener("mouseover", function rainbowfunc(){
-        let red = Math.random()*100;
-        let green = Math.random()*100;
-        let blue = Math.random()*100;
-        i.style.backgroundColor = `rgb(${red}%,${green}%,${blue}%)`
-    }));
     let arr = [];
     let a = 0;
     let b= 0;
     newBoxes.forEach(() => box.push(0.1));
     newBoxes.forEach(() => arr.push(a +=1 ));
-    newBoxes.forEach((i) => {
-        greyScale(i, arr.indexOf(b += 1));
-    });
+    newBoxes.forEach((item) => greyScale(item, arr.indexOf(b += 1)));
     let currentMode = "greyscale";
     buttonColor(currentMode);
 }
 
 
 
-function greyScale(i, a){
-    i.onmouseover = function () {
-        //   if(box[a] >= 1){
-        //     return;
-        // }
+function greyScale(item, a){
+    item.addEventListener("mouseover", () => {
         let newcolor = hexToRgb(`${color.value}`);
         newBoxes[a].style.backgroundColor = `rgba(${newcolor[0]},${newcolor[1]},${newcolor[2]}, ${box[a]})`;
         box[a] +=0.15;
-    }
+    });
+    
+    // item.onmouseover = function () {
+    //     let newcolor = hexToRgb(`${color.value}`);
+    //     newBoxes[a].style.backgroundColor = `rgba(${newcolor[0]},${newcolor[1]},${newcolor[2]}, ${box[a]})`;
+    //     box[a] +=0.15;
+    // }
 }
 
 function buttonColor(currentMode){
